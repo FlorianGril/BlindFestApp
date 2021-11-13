@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1A264A"
-    tools:context=".MainActivity">
+    tools:context=".BuzzerActivity">
     <View
         android:id="@+id/view"
         android:layout_width="499dp"
@@ -34,14 +34,18 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/buz1"
                     android:layout_width="150dp"
                     android:layout_height="350dp"
-                    android:layout_weight="0.5" />
+                    android:layout_weight="0.5"
+                    android:onClick="onClickStop"/>
 
                 <Button
+                    android:id="@+id/buz2"
                     android:layout_width="150dp"
                     android:layout_height="350dp"
-                    android:layout_weight="0.5" />
+                    android:layout_weight="0.5"
+                    android:onClick="onClickStop"/>
 
             </LinearLayout>
 
@@ -52,22 +56,48 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/buz3"
                     android:layout_width="150dp"
                     android:layout_height="350dp"
-                    android:layout_weight="0.5" />
+                    android:layout_weight="0.5"
+                    android:onClick="onClickStop"/>
 
                 <Button
+                    android:id="@+id/buz4"
                     android:layout_width="150dp"
                     android:layout_height="350dp"
-                    android:layout_weight="0.5" />
+                    android:layout_weight="0.5"
+                    android:onClick="onClickStop"/>
 
             </LinearLayout>
         </LinearLayout>
 
-        <View
+        <TextView
+            android:id="@+id/timer"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:onClick="onClickStart"
+            android:text="30"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/Widget.Holo.TextView"
+            android:textDirection="inherit"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/timerFin"
+            android:layout_width="150dp"
+            android:layout_height="41dp"
+            android:layout_gravity="center"
+            android:background="@android:color/black"
+            android:text="Fin?"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/Widget.Holo.TextView"
+            android:textColor="@color/white"
+            android:textDirection="inherit"
+            android:textSize="36sp"
+            android:textStyle="bold" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
