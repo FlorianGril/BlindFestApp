@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -39,7 +40,7 @@
                     android:layout_height="350dp"
                     android:layout_weight="0.5"
                     android:backgroundTint="#FFEB3B"
-                    android:onClick="onClickStop"/>
+                    android:onClick="onClickStop" />
 
                 <Button
                     android:id="@+id/buz2"
@@ -83,21 +84,7 @@
             android:layout_gravity="center"
             android:background="@color/white"
             android:text="30"
-            android:textAlignment="gravity"
-            android:textAppearance="@android:style/Widget.Holo.TextView"
-            android:textDirection="inherit"
-            android:textSize="50dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/timer2"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:background="@color/white"
-            android:onClick="onClickStart"
-            android:text="5"
-            android:textAlignment="viewEnd"
+            android:textAlignment="center"
             android:textAppearance="@android:style/Widget.Holo.TextView"
             android:textDirection="inherit"
             android:textSize="50dp"
@@ -109,13 +96,38 @@
             android:layout_height="41dp"
             android:layout_gravity="center"
             android:background="@android:color/black"
-            android:text="Fin?"
             android:onClick="onClickFin"
+            android:text="Fin?"
             android:textAlignment="center"
             android:textAppearance="@android:style/Widget.Holo.TextView"
             android:textColor="@color/white"
             android:textDirection="inherit"
             android:textSize="36sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/equipebuz"
+            android:layout_width="366dp"
+            android:layout_height="695dp"
+            android:layout_gravity="center"
+            android:background="#FF0000"
+            android:textAlignment="center"
+            android:textDirection="inherit" />
+
+        <TextView
+            android:id="@+id/timer2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:onClick="onClickStart"
+            android:text="5"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/Widget.Holo.TextView"
+            android:textDirection="inherit"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
     </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
