@@ -38,6 +38,7 @@
                     android:layout_width="150dp"
                     android:layout_height="350dp"
                     android:layout_weight="0.5"
+                    android:backgroundTint="#FFEB3B"
                     android:onClick="onClickStop"/>
 
                 <Button
@@ -45,7 +46,8 @@
                     android:layout_width="150dp"
                     android:layout_height="350dp"
                     android:layout_weight="0.5"
-                    android:onClick="onClickStop"/>
+                    android:backgroundTint="#00D9FF"
+                    android:onClick="onClickStop" />
 
             </LinearLayout>
 
@@ -60,14 +62,16 @@
                     android:layout_width="150dp"
                     android:layout_height="350dp"
                     android:layout_weight="0.5"
-                    android:onClick="onClickStop"/>
+                    android:backgroundTint="#FF0000"
+                    android:onClick="onClickStop" />
 
                 <Button
                     android:id="@+id/buz4"
                     android:layout_width="150dp"
                     android:layout_height="350dp"
                     android:layout_weight="0.5"
-                    android:onClick="onClickStop"/>
+                    android:backgroundTint="#85F404"
+                    android:onClick="onClickStop" />
 
             </LinearLayout>
         </LinearLayout>
@@ -78,9 +82,22 @@
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:background="@color/white"
-            android:onClick="onClickStart"
             android:text="30"
-            android:textAlignment="center"
+            android:textAlignment="gravity"
+            android:textAppearance="@android:style/Widget.Holo.TextView"
+            android:textDirection="inherit"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/timer2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:onClick="onClickStart"
+            android:text="5"
+            android:textAlignment="viewEnd"
             android:textAppearance="@android:style/Widget.Holo.TextView"
             android:textDirection="inherit"
             android:textSize="50dp"
@@ -93,6 +110,7 @@
             android:layout_gravity="center"
             android:background="@android:color/black"
             android:text="Fin?"
+            android:onClick="onClickFin"
             android:textAlignment="center"
             android:textAppearance="@android:style/Widget.Holo.TextView"
             android:textColor="@color/white"
