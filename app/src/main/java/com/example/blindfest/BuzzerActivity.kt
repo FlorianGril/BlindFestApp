@@ -110,7 +110,7 @@ class BuzzerActivity : AppCompatActivity() {
                 if (finTimer){
                     handler.removeCallbacks(this)
                 }
-                if (seconds == 9) {
+                if (seconds == 19) {
                     fin.setVisibility(View.VISIBLE)
                 }
                 if (seconds == -1) {

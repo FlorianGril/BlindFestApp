@@ -25,6 +25,9 @@
         <activity android:name=".ResultatActivity"
             android:parentActivityName=".ReponseActivity">
         </activity>
+        <activity android:name=".FavActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

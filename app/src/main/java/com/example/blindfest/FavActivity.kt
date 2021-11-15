@@ -1,17 +1,15 @@
 package com.example.blindfest
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
-import android.widget.TextView
-import androidx.wear.activity.ConfirmationActivity
+import androidx.appcompat.app.AppCompatActivity
 
-class ResultatActivity : AppCompatActivity() {
+class FavActivity : AppCompatActivity(){
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_resultat)
-
+        setContentView(R.layout.activity_fav)
     }
 
     fun accueil(view: View){

@@ -105,6 +105,12 @@
             android:textSize="36sp"
             android:textStyle="bold" />
 
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/equipebuz"
             android:layout_width="366dp"
@@ -126,7 +132,6 @@
             android:textDirection="inherit"
             android:textSize="50dp"
             android:textStyle="bold" />
-
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

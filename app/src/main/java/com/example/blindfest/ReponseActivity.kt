@@ -44,4 +44,8 @@ class ReponseActivity : AppCompatActivity() {
         }
 
     }
+    fun accueil(view: View){
+        val intentAcc = Intent(this, MainActivity::class.java)
+        startActivity(intentAcc)
+    }
 }

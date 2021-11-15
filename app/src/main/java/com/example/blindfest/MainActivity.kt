@@ -8,8 +8,8 @@ import android.view.View
 import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
-    var nbequipe = 0
-    var nbmanche = 0
+    var nbequipe = 2
+    var nbmanche = 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,6 +88,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun fav(view: View){
+        val intentFav = Intent(this, FavActivity::class.java)
+        startActivity(intentFav)
+    }
     /*fun jouer(view: View){
         val radio: RadioButton = findViewById(R.id.radioButton2)
 
