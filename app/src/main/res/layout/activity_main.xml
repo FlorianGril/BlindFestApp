@@ -47,18 +47,6 @@
         app:layout_constraintTop_toBottomOf="@+id/blindfest" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:onClick="jouer"
-        android:text="Jouer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/equipe2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -96,6 +84,122 @@
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toEndOf="@+id/equipe3"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/mode"
+        android:layout_width="0dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:text="Mode de jeu:"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/equipe2"
+        app:layout_constraintTop_toBottomOf="@+id/equipe2" />
+
+    <Button
+        android:id="@+id/os"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#0430D1"
+        android:onClick="choixOs"
+        android:text="One Shot"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="@+id/mode"
+        app:layout_constraintTop_toBottomOf="@+id/equipe2" />
+
+    <Button
+        android:id="@+id/party"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#0430D1"
+        android:onClick="choixParty"
+        android:text="Party"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toEndOf="@+id/os"
+        app:layout_constraintTop_toBottomOf="@+id/equipe3" />
+
+    <TextView
+        android:id="@+id/nbmanche"
+        android:layout_width="0dp"
+        android:layout_height="29dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="240dp"
+        android:text="Nombre de manches:"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/blindfest" />
+
+    <Button
+        android:id="@+id/manche5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="204dp"
+        android:backgroundTint="#0430D1"
+        android:onClick="choixmanche"
+        android:text="5"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/manche1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="204dp"
+        android:backgroundTint="#0430D1"
+        android:text="1"
+        android:textColor="#FF0000"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/manche10"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="204dp"
+        android:backgroundTint="#0430D1"
+        android:onClick="choixmanche"
+        android:text="10"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toEndOf="@+id/equipe2"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/manche30"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="204dp"
+        android:backgroundTint="#0430D1"
+        android:onClick="choixmanche"
+        android:text="30"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/equipe3"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:onClick="jouer"
+        android:text="Jouer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,18 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.RadioButton
-import android.widget.TextView
-import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     var nbequipe = 0
+    var nbmanche = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
+        var manche1=findViewById(R.id.manche1) as Button
+        manche1.setVisibility(View.GONE)
     }
 
     fun choixequipe(view: View) {
@@ -28,15 +27,63 @@ class MainActivity : AppCompatActivity() {
         but3.setTextColor(Color.WHITE)
         but4.setTextColor(Color.WHITE)
         var button = view as Button
-        var sah = button.getText().toString()
-        nbequipe = sah.toInt()
+        var choixequipe = button.getText().toString()
+        nbequipe = choixequipe.toInt()
         button.setTextColor(Color.RED)
     }
 
+    fun choixmanche(view: View) {
+        var manche5=findViewById(R.id.manche5) as Button
+        var manche10=findViewById(R.id.manche10) as Button
+        var manche30=findViewById(R.id.manche30) as Button
+        manche5.setTextColor(Color.WHITE)
+        manche10.setTextColor(Color.WHITE)
+        manche30.setTextColor(Color.WHITE)
+        var buttonManche = view as Button
+        var choixmanche = buttonManche.getText().toString()
+        nbmanche = choixmanche.toInt()
+        buttonManche.setTextColor(Color.RED)
+    }
+
+    fun choixOs(view:View){
+        var manche1=findViewById(R.id.manche1) as Button
+        var manche5=findViewById(R.id.manche5) as Button
+        var manche10=findViewById(R.id.manche10) as Button
+        var manche30=findViewById(R.id.manche30) as Button
+        manche1.setVisibility(View.VISIBLE)
+        manche5.setVisibility(View.GONE)
+        manche10.setVisibility(View.GONE)
+        manche30.setVisibility(View.GONE)
+        var os =findViewById(R.id.os) as Button
+        var party=findViewById(R.id.party) as Button
+        os.setTextColor(Color.WHITE)
+        party.setTextColor(Color.WHITE)
+        var buttonMode = view as Button
+        buttonMode.setTextColor(Color.RED)
+        nbmanche=1
+    }
+
+    fun choixParty(view: View){
+        var manche1=findViewById(R.id.manche1) as Button
+        var manche5=findViewById(R.id.manche5) as Button
+        var manche10=findViewById(R.id.manche10) as Button
+        var manche30=findViewById(R.id.manche30) as Button
+        manche1.setVisibility(View.GONE)
+        manche5.setVisibility(View.VISIBLE)
+        manche10.setVisibility(View.VISIBLE)
+        manche30.setVisibility(View.VISIBLE)
+        var os =findViewById(R.id.os) as Button
+        var party=findViewById(R.id.party) as Button
+        os.setTextColor(Color.WHITE)
+        party.setTextColor(Color.WHITE)
+        var buttonMode = view as Button
+        buttonMode.setTextColor(Color.RED)
+    }
 
     fun jouer(view: View) {
         val intent = Intent(this, BuzzerActivity::class.java).apply {
             putExtra("int_value", nbequipe)
+            putExtra("int_value", nbmanche)
         }
         startActivity(intent)
     }

@@ -18,12 +18,16 @@ class BuzzerActivity : AppCompatActivity() {
     private var seconds2 = 5
     private var running = true
     var nbequipe = 2
+    var nbmanche = 1
+    var manche = 1
     var musique = "Coolio - Gangsta's Paradise (ft. LV)"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buzzer)
         nbequipe = intent.getIntExtra("int_value", 2)
+        nbmanche = intent.getIntExtra("int_value", 1)
+        manche = intent.getIntExtra("int_value", 1)
         var timerBuz = findViewById(R.id.timer2) as TextView
         var equipeBuz = findViewById(R.id.equipebuz) as TextView
         timerBuz.setVisibility(View.GONE)
@@ -36,6 +40,8 @@ class BuzzerActivity : AppCompatActivity() {
     fun reponse(){
         val intentFin = Intent(this, ReponseActivity::class.java).apply {
             putExtra(EXTRA_MESSAGE, musique)
+            putExtra("int_value", manche)
+            putExtra("int_value", nbmanche)
         }
         startActivity(intentFin)
     }

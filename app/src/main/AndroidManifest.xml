@@ -22,6 +22,9 @@
         <activity android:name=".ReponseActivity"
             android:parentActivityName=".BuzzerActivity">
         </activity>
+        <activity android:name=".ResultatActivity"
+            android:parentActivityName=".ReponseActivity">
+        </activity>
     </application>
 
 </manifest>

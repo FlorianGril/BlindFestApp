@@ -120,7 +120,6 @@
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:background="@color/white"
-            android:onClick="onClickStart"
             android:text="5"
             android:textAlignment="center"
             android:textAppearance="@android:style/Widget.Holo.TextView"
