@@ -2,6 +2,7 @@ package com.example.blindfest
 
 import android.content.Intent
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -23,6 +24,8 @@ class BuzzerActivity : AppCompatActivity() {
     var musique = "Coolio - Gangsta's Paradise (ft. LV)"
     var finTimer = false
 
+    private lateinit var music: MediaPlayer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buzzer)
@@ -34,6 +37,8 @@ class BuzzerActivity : AppCompatActivity() {
         timerBuz.setVisibility(View.GONE)
         equipeBuz.setVisibility(View.GONE)
         nbBuzzers()
+        music = MediaPlayer.create(applicationContext,R.raw.gangsta)
+        music.start()
         runTimer()
     }
 
@@ -48,12 +53,15 @@ class BuzzerActivity : AppCompatActivity() {
         startActivity(intentFin)
     }
     fun onClickFin(view: View) {
+        music.stop()
+        music.reset()
         reponse()
         finTimer = true
     }
 
     fun onClickStop(view: View?) {
         running = false
+        music.pause()
         runTimer2()
         var button = view as Button
         //Toast.makeText(applicationContext, color, Toast.LENGTH_LONG).show()
@@ -139,6 +147,7 @@ class BuzzerActivity : AppCompatActivity() {
                     timerBuz.setVisibility(View.GONE)
                     equipeBuz.setVisibility(View.GONE)
                     seconds2 = 5
+                    music.start()
                     running = true
                     fin.setVisibility(View.VISIBLE)
                 }
