@@ -21,13 +21,14 @@ class BuzzerActivity : AppCompatActivity() {
     var nbmanche = 1
     var manche = 1
     var musique = "Coolio - Gangsta's Paradise (ft. LV)"
+    var finTimer = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buzzer)
-        nbequipe = intent.getIntExtra("int_value", 2)
-        nbmanche = intent.getIntExtra("int_value", 1)
-        manche = intent.getIntExtra("int_value", 1)
+        nbequipe = intent.getIntExtra("nb_equipe", 2)
+        nbmanche = intent.getIntExtra("nb_manche", 1)
+        manche = intent.getIntExtra("manche", 1)
         var timerBuz = findViewById(R.id.timer2) as TextView
         var equipeBuz = findViewById(R.id.equipebuz) as TextView
         timerBuz.setVisibility(View.GONE)
@@ -40,13 +41,15 @@ class BuzzerActivity : AppCompatActivity() {
     fun reponse(){
         val intentFin = Intent(this, ReponseActivity::class.java).apply {
             putExtra(EXTRA_MESSAGE, musique)
-            putExtra("int_value", manche)
-            putExtra("int_value", nbmanche)
+            putExtra("manche", manche)
+            putExtra("nb_equipe", nbequipe)
+            putExtra("nb_manche", nbmanche)
         }
         startActivity(intentFin)
     }
     fun onClickFin(view: View) {
         reponse()
+        finTimer = true
     }
 
     fun onClickStop(view: View?) {
@@ -104,6 +107,9 @@ class BuzzerActivity : AppCompatActivity() {
                     seconds--
                 }
                 handler.postDelayed(this, 1000)
+                if (finTimer){
+                    handler.removeCallbacks(this)
+                }
                 if (seconds == 9) {
                     fin.setVisibility(View.VISIBLE)
                 }

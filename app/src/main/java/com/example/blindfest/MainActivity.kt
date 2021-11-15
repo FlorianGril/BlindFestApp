@@ -82,8 +82,8 @@ class MainActivity : AppCompatActivity() {
 
     fun jouer(view: View) {
         val intent = Intent(this, BuzzerActivity::class.java).apply {
-            putExtra("int_value", nbequipe)
-            putExtra("int_value", nbmanche)
+            putExtra("nb_equipe", nbequipe)
+            putExtra("nb_manche", nbmanche)
         }
         startActivity(intent)
     }
