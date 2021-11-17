@@ -5,13 +5,22 @@ import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
+import android.provider.ContactsContract
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
+import androidx.lifecycle.MutableLiveData
 import androidx.wear.activity.ConfirmationActivity.EXTRA_MESSAGE
+import com.google.gson.Gson
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
+import java.sql.DriverManager.println
+import java.util.Collections.emptyList
+import java.util.Observer
 
 
 class BuzzerActivity : AppCompatActivity() {
@@ -23,8 +32,9 @@ class BuzzerActivity : AppCompatActivity() {
     var manche = 1
     var musique = "Coolio - Gangsta's Paradise (ft. LV)"
     var finTimer = false
+    lateinit var tracks : List<Track>
 
-    private lateinit var music: MediaPlayer
+    private var music: MediaPlayer = MediaPlayer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +47,18 @@ class BuzzerActivity : AppCompatActivity() {
         timerBuz.setVisibility(View.GONE)
         equipeBuz.setVisibility(View.GONE)
         nbBuzzers()
-        music = MediaPlayer.create(applicationContext,R.raw.gangsta)
+
+        val idPlay = searchMusic("Rap")
+        //val idPlay = "1996494362"
+        Log.d("PLAYLIST CODE", ""+ idPlay)
+
+        val musiques = searchTracks(idPlay)
+        //val musiques = arrayOf("https://cdns-preview-7.dzcdn.net/stream/c-795a4ca42a97994b436f12110652fab3-3.mp3", "aaa")
+        Log.d("Test Music", ""+ musiques[0])
+
+        //music.setDataSource(musiques[0])
+        music = MediaPlayer.create(applicationContext, R.raw.gangsta)
+        //music.prepare()
         music.start()
         runTimer()
     }
@@ -155,4 +176,104 @@ class BuzzerActivity : AppCompatActivity() {
 
         })
     }
+
+    private fun searchMusic(playlist: String) : String {
+        val client = OkHttpClient()
+        val url = "https://api.deezer.com/search/playlist/?q=$playlist/"
+        val request = Request.Builder().url(url).build()
+        var playlistId : String = "marc"
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onResponse(call: Call, response: Response) {
+                    if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+                    val rep = response.body()!!.string()
+
+                    val json = JSONObject(rep)
+
+                    Log.d("AA", "JSON ::${json.toString()}")
+
+                    val gson = Gson()
+                    var plays = gson.fromJson(json.toString(), DataPlaylist::class.java)
+
+                    var playlists: List<Playlist>
+                    playlists = plays.getPlaylists()
+
+                    var numPlay = 9999;
+
+                    if (playlists.size > 0) {
+                        Log.d("KIKI", "" + playlists[0].getTitle())
+                        for (i in 0..playlists.size - 1) {
+                            if (playlists[i].getNb_tracks() > nbmanche && numPlay == 9999) {
+                                numPlay = i
+                            }
+                        }
+                    }
+
+                    Log.d("NUMERO PLAY", "" + numPlay)
+
+                    var playlistChoisi = playlists[numPlay]
+
+                    playlistId = playlistChoisi.getId()
+                    Log.d("111-ID CHOISI-111", "" + playlistId)
+
+                }
+
+                override fun onFailure(call: Call, e: IOException) {
+                    println("API execute failed")
+
+                }
+            })
+            Log.d("ID CHOISI", ""+ playlistId)
+        return playlistId
     }
+
+    private fun searchTracks(playlist: String): Array<String> {
+        val client = OkHttpClient()
+        val url = "https://api.deezer.com/playlist/$playlist/"
+
+        Log.d("AA", "URL ::$url")
+        val request = Request.Builder().url(url).build()
+        var previews: Array<String> = Array(nbmanche) {"a"}
+
+        if(true) {
+            client.newCall(request).enqueue(object : Callback {
+                override fun onResponse(call: Call, response: Response) {
+                    if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+                    val rep = response.body()!!.string()
+
+                    val json = JSONObject(rep)
+
+                    Log.d("AA", "JSON ::${json.toString()}")
+
+                    val gson = Gson()
+                    var play = gson.fromJson(json.toString(), Playlist::class.java)
+
+                    var tracks: List<Track>
+                    var pre = play.getTracks()
+                    Log.d("pre", "" + pre.getData())
+                    tracks = pre.getData()
+
+                    if (tracks.size > 0) {
+                        Log.d("KIKI", "" + tracks[0].getTitle())
+                        for (i in 0..nbmanche - 1) {
+                            previews[i] = tracks[i].getPreview()
+                        }
+                    }
+
+                    Log.d("Musique 1 preview", "" + previews[0])
+
+                }
+
+                override fun onFailure(call: Call, e: IOException) {
+                    println("API execute failed")
+                }
+            })
+            Log.d("preview 1 :", ""+ previews[0])
+            return previews
+        }else{
+            return Array(nbmanche) {"a"}
+        }
+    }
+}

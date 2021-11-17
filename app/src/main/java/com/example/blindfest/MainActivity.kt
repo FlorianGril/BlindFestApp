@@ -92,6 +92,7 @@ class MainActivity : AppCompatActivity() {
         val intentFav = Intent(this, FavActivity::class.java)
         startActivity(intentFav)
     }
+
     /*fun jouer(view: View){
         val radio: RadioButton = findViewById(R.id.radioButton2)
 
