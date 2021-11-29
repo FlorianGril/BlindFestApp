@@ -1,26 +1,19 @@
 package com.example.blindfest
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
-import android.provider.ContactsContract
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
-import androidx.lifecycle.MutableLiveData
 import androidx.wear.activity.ConfirmationActivity.EXTRA_MESSAGE
-import com.google.gson.Gson
 import okhttp3.*
-import org.json.JSONObject
-import java.io.IOException
-import java.sql.DriverManager.println
-import java.util.Collections.emptyList
-import java.util.Observer
 
 
 class BuzzerActivity : AppCompatActivity() {
@@ -30,6 +23,7 @@ class BuzzerActivity : AppCompatActivity() {
     var nbequipe = 2
     var nbmanche = 1
     var manche = 1
+    var playlist = ""
     var musique = "Coolio - Gangsta's Paradise (ft. LV)"
     var finTimer = false
     lateinit var tracks : List<Track>
@@ -39,22 +33,26 @@ class BuzzerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buzzer)
-        nbequipe = intent.getIntExtra("nb_equipe", 2)
+        //nbequipe = intent.getIntExtra("nb_equipe", 2)
+        val sharedPreferences = getSharedPreferences("Teams", Context.MODE_PRIVATE)
+        nbequipe = sharedPreferences.getInt("nb_equipe", 2)
         nbmanche = intent.getIntExtra("nb_manche", 1)
         manche = intent.getIntExtra("manche", 1)
+        playlist = intent.getStringExtra(EXTRA_MESSAGE).toString()
+        Toast.makeText(this, playlist, Toast.LENGTH_LONG).show()
         var timerBuz = findViewById(R.id.timer2) as TextView
         var equipeBuz = findViewById(R.id.equipebuz) as TextView
         timerBuz.setVisibility(View.GONE)
         equipeBuz.setVisibility(View.GONE)
         nbBuzzers()
 
-        val idPlay = searchMusic("Rap")
+        /*val idPlay = searchMusic("Rap")
         //val idPlay = "1996494362"
         Log.d("PLAYLIST CODE", ""+ idPlay)
 
         val musiques = searchTracks(idPlay)
         //val musiques = arrayOf("https://cdns-preview-7.dzcdn.net/stream/c-795a4ca42a97994b436f12110652fab3-3.mp3", "aaa")
-        Log.d("Test Music", ""+ musiques[0])
+        Log.d("Test Music", ""+ musiques[0])*/
 
         //music.setDataSource(musiques[0])
         music = MediaPlayer.create(applicationContext, R.raw.gangsta)
@@ -67,8 +65,9 @@ class BuzzerActivity : AppCompatActivity() {
     fun reponse(){
         val intentFin = Intent(this, ReponseActivity::class.java).apply {
             putExtra(EXTRA_MESSAGE, musique)
+            //putExtra(EXTRA_MESSAGE, playlist)
             putExtra("manche", manche)
-            putExtra("nb_equipe", nbequipe)
+            //putExtra("nb_equipe", nbequipe)
             putExtra("nb_manche", nbmanche)
         }
         startActivity(intentFin)
@@ -85,35 +84,31 @@ class BuzzerActivity : AppCompatActivity() {
         music.pause()
         runTimer2()
         var button = view as Button
-        //Toast.makeText(applicationContext, color, Toast.LENGTH_LONG).show()
         var timerBuz = findViewById(R.id.timer2) as TextView
         timerBuz.setVisibility(View.VISIBLE)
         var equipeBuz = findViewById(R.id.equipebuz) as TextView
-        //equipeBuz.setTextColor(Color.parseColor(button.color))
         equipeBuz.setVisibility(View.VISIBLE)
 
         var buttonDrawable = equipeBuz.background
         buttonDrawable = DrawableCompat.wrap(buttonDrawable!!)
-        //the color is a direct color int and not a color resource
-        //the color is a direct color int and not a color resource
-        if (button.getId()== R.id.buz1) {
+        if (button.getId()== R.id.buzjaune) {
             DrawableCompat.setTint(buttonDrawable, Color.YELLOW)
         }
-        if (button.getId()== R.id.buz2) {
+        if (button.getId()== R.id.buzbleu) {
             DrawableCompat.setTint(buttonDrawable, Color.BLUE)
         }
-        if (button.getId()== R.id.buz3) {
+        if (button.getId()== R.id.buzrouge) {
             DrawableCompat.setTint(buttonDrawable, Color.RED)
         }
-        if (button.getId()== R.id.buz4) {
+        if (button.getId()== R.id.buzvert) {
             DrawableCompat.setTint(buttonDrawable, Color.GREEN)
         }
         equipeBuz.background = buttonDrawable
     }
 
     private fun nbBuzzers(){
-        var buz1 = findViewById(R.id.buz1) as Button
-        var buz4 = findViewById(R.id.buz4) as Button
+        var buz1 = findViewById(R.id.buzjaune) as Button
+        var buz4 = findViewById(R.id.buzvert) as Button
         if (nbequipe==2){
             buz1.setVisibility(View.GONE)
             buz4.setVisibility(View.GONE)
@@ -177,7 +172,7 @@ class BuzzerActivity : AppCompatActivity() {
         })
     }
 
-    private fun searchMusic(playlist: String) : String {
+    /*private fun searchMusic(playlist: String) : String {
         val client = OkHttpClient()
         val url = "https://api.deezer.com/search/playlist/?q=$playlist/"
         val request = Request.Builder().url(url).build()
@@ -275,5 +270,5 @@ class BuzzerActivity : AppCompatActivity() {
         }else{
             return Array(nbmanche) {"a"}
         }
-    }
+    }*/
 }

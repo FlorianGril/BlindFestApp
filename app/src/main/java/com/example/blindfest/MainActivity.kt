@@ -1,11 +1,16 @@
 package com.example.blindfest
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.Spinner
+import androidx.wear.activity.ConfirmationActivity
+import androidx.wear.activity.ConfirmationActivity.EXTRA_MESSAGE
 
 class MainActivity : AppCompatActivity() {
     var nbequipe = 2
@@ -15,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         var manche1=findViewById(R.id.manche1) as Button
         manche1.setVisibility(View.GONE)
     }
@@ -81,9 +87,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun jouer(view: View) {
+        val sharedPreferences = getSharedPreferences("Teams", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putInt("nb_equipe", nbequipe)
+        editor.putInt("scorerouge", 0)
+        editor.putInt("scorebleu", 0)
+        editor.putInt("scorejaune", 0)
+        editor.putInt("scorevert", 0)
+        editor.apply()
+        var playlistspinner= findViewById<View>(R.id.playlist) as Spinner
+        var playlist: String = playlistspinner.getSelectedItem().toString()
         val intent = Intent(this, BuzzerActivity::class.java).apply {
-            putExtra("nb_equipe", nbequipe)
+            //putExtra("nb_equipe", nbequipe)
             putExtra("nb_manche", nbmanche)
+            putExtra(EXTRA_MESSAGE, playlist)
         }
         startActivity(intent)
     }
@@ -126,3 +143,4 @@ class MainActivity : AppCompatActivity() {
         }*/
 
 }
+

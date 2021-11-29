@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/buz1" android:color="#FFEB3B" />
-    <item android:id="@+id/buz2" android:color="#00D9FF" />
-    <item android:id="@+id/buz3" android:color="#FF0000" />
-    <item android:id="@+id/buz4" android:color="#85F404" />
+    <item android:id="@+id/buzjaune" android:color="#FFEB3B" />
+    <item android:id="@+id/buzbleu" android:color="#00D9FF" />
+    <item android:id="@+id/buzrouge" android:color="#FF0000" />
+    <item android:id="@+id/buzvert" android:color="#85F404" />
 
     <item android:color="@android:color/holo_red_dark" />
 </selector>

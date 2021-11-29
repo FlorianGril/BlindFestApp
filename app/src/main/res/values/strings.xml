@@ -6,4 +6,11 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string-array name="Playlist">
+        <item>Éclectique</item>
+        <item>Rap FR</item>
+        <item>Rap US</item>
+        <item>Rock</item>
+        <item>Années 2000</item>
+    </string-array>
 </resources>
