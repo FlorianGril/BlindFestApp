@@ -33,13 +33,14 @@ class BuzzerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buzzer)
+        getSupportActionBar()?.hide()
         //nbequipe = intent.getIntExtra("nb_equipe", 2)
         val sharedPreferences = getSharedPreferences("Teams", Context.MODE_PRIVATE)
         nbequipe = sharedPreferences.getInt("nb_equipe", 2)
         nbmanche = intent.getIntExtra("nb_manche", 1)
         manche = intent.getIntExtra("manche", 1)
         playlist = intent.getStringExtra(EXTRA_MESSAGE).toString()
-        Toast.makeText(this, playlist, Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, playlist, Toast.LENGTH_LONG).show()
         var timerBuz = findViewById(R.id.timer2) as TextView
         var equipeBuz = findViewById(R.id.equipebuz) as TextView
         timerBuz.setVisibility(View.GONE)
@@ -61,6 +62,9 @@ class BuzzerActivity : AppCompatActivity() {
         runTimer()
     }
 
+    override fun onBackPressed() {
+
+    }
 
     fun reponse(){
         val intentFin = Intent(this, ReponseActivity::class.java).apply {
@@ -80,6 +84,16 @@ class BuzzerActivity : AppCompatActivity() {
     }
 
     fun onClickStop(view: View?) {
+        var buz1 = findViewById(R.id.buzjaune) as Button
+        var buz2 = findViewById(R.id.buzbleu) as Button
+        var buz3 = findViewById(R.id.buzrouge) as Button
+        var buz4 = findViewById(R.id.buzvert) as Button
+        var fin = findViewById(R.id.timerFin) as TextView
+        buz1.setVisibility(View.GONE)
+        buz2.setVisibility(View.GONE)
+        buz3.setVisibility(View.GONE)
+        buz4.setVisibility(View.GONE)
+        fin.setVisibility(View.GONE)
         running = false
         music.pause()
         runTimer2()
@@ -138,6 +152,8 @@ class BuzzerActivity : AppCompatActivity() {
                     fin.setVisibility(View.VISIBLE)
                 }
                 if (seconds == -1) {
+                    music.stop()
+                    music.reset()
                     reponse()
                     handler.removeCallbacks(this)
                 }
@@ -150,6 +166,10 @@ class BuzzerActivity : AppCompatActivity() {
         var timerBuz = findViewById(R.id.timer2) as TextView
         var equipeBuz = findViewById(R.id.equipebuz) as TextView
         var fin = findViewById(R.id.timerFin) as TextView
+        var buz1 = findViewById(R.id.buzjaune) as Button
+        var buz2 = findViewById(R.id.buzbleu) as Button
+        var buz3 = findViewById(R.id.buzrouge) as Button
+        var buz4 = findViewById(R.id.buzvert) as Button
         val handlerBuz = Handler()
         handlerBuz.post(object : Runnable {
             override fun run() {
@@ -162,10 +182,15 @@ class BuzzerActivity : AppCompatActivity() {
                     handlerBuz.removeCallbacks(this)
                     timerBuz.setVisibility(View.GONE)
                     equipeBuz.setVisibility(View.GONE)
+                    buz1.setVisibility(View.VISIBLE)
+                    buz2.setVisibility(View.VISIBLE)
+                    buz3.setVisibility(View.VISIBLE)
+                    buz4.setVisibility(View.VISIBLE)
                     seconds2 = 5
                     music.start()
                     running = true
                     fin.setVisibility(View.VISIBLE)
+                    nbBuzzers()
                 }
             }
 

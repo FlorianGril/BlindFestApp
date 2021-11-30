@@ -20,11 +20,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        getSupportActionBar()?.hide()
         var manche1=findViewById(R.id.manche1) as Button
         manche1.setVisibility(View.GONE)
     }
 
+    override fun onBackPressed() {
+
+    }
     fun choixequipe(view: View) {
         var but2=findViewById(R.id.equipe2) as Button
         var but3=findViewById(R.id.equipe3) as Button
@@ -143,4 +146,5 @@ class MainActivity : AppCompatActivity() {
         }*/
 
 }
+
 

@@ -9,8 +9,8 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="499dp"
-        android:layout_height="807dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/background_color"
         android:backgroundTint="#9C27B0"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,7 +20,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="400dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="180dp"
@@ -32,13 +32,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="0.5"
             android:gravity="center"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/buzjaunem"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:backgroundTint="#FFEB3B"
                 android:onClick="moins"
@@ -48,8 +49,8 @@
 
             <Button
                 android:id="@+id/scorejaune"
-                android:layout_width="140dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:backgroundTint="#FFEB3B"
                 android:text="0"
@@ -58,8 +59,8 @@
 
             <Button
                 android:id="@+id/buzjaunep"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:backgroundTint="#FFEB3B"
                 android:onClick="plus"
@@ -69,8 +70,8 @@
 
             <Button
                 android:id="@+id/buzbleum"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:backgroundTint="#00D9FF"
                 android:onClick="moins"
@@ -80,8 +81,8 @@
 
             <Button
                 android:id="@+id/scorebleu"
-                android:layout_width="140dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:backgroundTint="#00D9FF"
                 android:text="0"
@@ -90,8 +91,8 @@
 
             <Button
                 android:id="@+id/buzbleup"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:backgroundTint="#00D9FF"
                 android:onClick="plus"
@@ -104,13 +105,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="0.5"
             android:gravity="center"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/buzrougem"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:backgroundTint="#FF0000"
                 android:onClick="moins"
@@ -120,8 +122,8 @@
 
             <Button
                 android:id="@+id/scorerouge"
-                android:layout_width="140dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:backgroundTint="#FF0000"
                 android:text="0"
@@ -130,8 +132,8 @@
 
             <Button
                 android:id="@+id/buzrougep"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:backgroundTint="#FF0000"
                 android:onClick="plus"
@@ -141,8 +143,8 @@
 
             <Button
                 android:id="@+id/buzvertm"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:backgroundTint="#85F404"
                 android:onClick="moins"
@@ -152,8 +154,8 @@
 
             <Button
                 android:id="@+id/scorevert"
-                android:layout_width="140dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:backgroundTint="#85F404"
                 android:text="0"
@@ -162,8 +164,8 @@
 
             <Button
                 android:id="@+id/buzvertp"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:backgroundTint="#85F404"
                 android:onClick="plus"
@@ -178,10 +180,10 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
         android:layout_marginTop="84dp"
         android:text="La réponse était:"
         android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -200,20 +202,23 @@
         android:id="@+id/continuebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="152dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="20dp"
         android:onClick="continuer"
         android:text="Continuer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reponse" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout1" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
         android:layout_marginTop="24dp"
         android:onClick="accueil"
         android:text="Accueil"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -221,12 +226,27 @@
         android:id="@+id/affmanche"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
         android:text="TextView"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addfav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:onClick="addfavori"
+        android:text="Fav"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reponse" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

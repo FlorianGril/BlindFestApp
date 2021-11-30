@@ -18,13 +18,14 @@ class ReponseActivity : AppCompatActivity() {
     var ptjaune = 0
     var ptrouge = 0
     var ptvert = 0
-
+    var reponse = ""
 
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reponse)
-        var reponse = intent.getStringExtra(EXTRA_MESSAGE)
+        getSupportActionBar()?.hide()
+        reponse = intent.getStringExtra(EXTRA_MESSAGE).toString()
         val sharedPreferences = getSharedPreferences("Teams", Context.MODE_PRIVATE)
         nbequipe = sharedPreferences.getInt("nb_equipe", 2)
         //nbequipe = intent.getIntExtra("nb_equipe", 2)
@@ -39,7 +40,15 @@ class ReponseActivity : AppCompatActivity() {
 
 
     }
+    override fun onBackPressed() {
 
+    }
+    
+    fun addfavori(){
+        val favoris = getSharedPreferences("Favoris", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = favoris.edit()
+        editor.putString(reponse, reponse)
+    }
     private fun nbBuzzers(){
         var buzjm = findViewById(R.id.buzjaunem) as Button
         var buzjp = findViewById(R.id.buzjaunep) as Button

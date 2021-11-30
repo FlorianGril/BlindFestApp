@@ -16,6 +16,7 @@ class ResultatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resultat)
+        getSupportActionBar()?.hide()
         nbmanche = intent.getIntExtra("nb_manche", 1)
         manche = intent.getIntExtra("manche", 1)
         if (nbmanche == manche){
@@ -26,7 +27,9 @@ class ResultatActivity : AppCompatActivity() {
         classement()
         nbTeam()
     }
+    override fun onBackPressed() {
 
+    }
     fun classement(){
         val sharedPreferences = getSharedPreferences("Teams", Context.MODE_PRIVATE)
         nbequipe = sharedPreferences.getInt("nb_equipe", 2)
