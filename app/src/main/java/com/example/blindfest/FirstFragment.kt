@@ -4,25 +4,21 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.wear.activity.ConfirmationActivity
-import androidx.wear.activity.ConfirmationActivity.EXTRA_MESSAGE
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+class FirstFragment:Fragment(R.layout.fragment_first) {
     var nbequipe = 2
     var nbmanche = 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        getSupportActionBar()?.hide()
         var manche1=findViewById(R.id.manche1) as Button
         manche1.setVisibility(View.GONE)
 
@@ -77,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         buttonManche.setTextColor(Color.RED)
     }
 
-    fun choixOs(view:View){
+    fun choixOs(view: View){
         var manche1=findViewById(R.id.manche1) as Button
         var manche5=findViewById(R.id.manche5) as Button
         var manche10=findViewById(R.id.manche10) as Button
@@ -126,7 +122,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, BuzzerActivity::class.java).apply {
             //putExtra("nb_equipe", nbequipe)
             putExtra("nb_manche", nbmanche)
-            putExtra(EXTRA_MESSAGE, playlist)
+            putExtra(ConfirmationActivity.EXTRA_MESSAGE, playlist)
         }
         startActivity(intent)
     }
@@ -169,5 +165,4 @@ class MainActivity : AppCompatActivity() {
         }*/
 
 }
-
-
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/jeu"
+        android:title="Jeu"
+        android:icon="@drawable/ic_music_foreground"/>
+    <item
+        android:id="@+id/regles"
+        android:title="Règles"
+        android:icon="@drawable/ic_rules_foreground"/>
+    <item
+        android:id="@+id/favoris"
+        android:title="Favoris"
+        android:icon="@drawable/ic_fav_foreground"/>
+</menu>
