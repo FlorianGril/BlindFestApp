@@ -7,21 +7,21 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class FavActivity : AppCompatActivity(){
+class ReglesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fav)
+        setContentView(R.layout.activity_regles)
         getSupportActionBar()?.hide()
         findViewById<BottomNavigationView>(R.id.bottomNavigationView).setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.regles->{
-                    var intent: Intent = Intent(this, ReglesActivity::class.java)
+            when (it.itemId) {
+                R.id.jeu -> {
+                    var intent: Intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     overridePendingTransition(R.anim.no_transition, R.anim.no_transition)
                 }
-                R.id.jeu->{
-                    var intent: Intent = Intent(this, MainActivity::class.java)
+                R.id.favoris -> {
+                    var intent: Intent = Intent(this, FavActivity::class.java)
                     startActivity(intent)
                     overridePendingTransition(R.anim.no_transition, R.anim.no_transition)
                 }
@@ -29,10 +29,5 @@ class FavActivity : AppCompatActivity(){
             }
             true
         }
-    }
-
-    fun accueil(view: View){
-        val intentAcc = Intent(this, MainActivity::class.java)
-        startActivity(intentAcc)
     }
 }

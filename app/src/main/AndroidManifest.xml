@@ -32,6 +32,9 @@
         <activity android:name=".FavActivity"
             android:parentActivityName=".MainActivity">
         </activity>
+        <activity android:name=".ReglesActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

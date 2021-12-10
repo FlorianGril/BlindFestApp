@@ -6,9 +6,13 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.wear.activity.ConfirmationActivity
 import androidx.wear.activity.ConfirmationActivity.EXTRA_MESSAGE
@@ -26,31 +30,48 @@ class MainActivity : AppCompatActivity() {
         var manche1=findViewById(R.id.manche1) as Button
         manche1.setVisibility(View.GONE)
 
-        val firstFragment=FirstFragment()
-        val secondFragment=SecondFragment()
-        val thirdFragment=ThirdFragment()
-
-        setCurrentFragment(firstFragment)
-
         findViewById<BottomNavigationView>(R.id.bottomNavigationView).setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.jeu->setCurrentFragment(firstFragment)
-                R.id.regles->setCurrentFragment(secondFragment)
-                R.id.favoris->setCurrentFragment(thirdFragment)
+                R.id.regles->{
+                    var intent: Intent = Intent(this, ReglesActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.no_transition, R.anim.no_transition)
+                }
+                R.id.favoris->{
+                    var intent: Intent = Intent(this, FavActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.no_transition, R.anim.no_transition)
+                }
 
             }
             true
         }
     }
 
-    private fun setCurrentFragment(fragment:Fragment)=
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flFragment,fragment)
-            commit()
-        }
-    override fun onBackPressed() {
 
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Toast.makeText(this, "ouiiii", Toast.LENGTH_LONG).show()
+
+        when (item.itemId) {
+
+            R.id.regles-> {
+                //var intent: Intent = Intent(this, QRCodeEncoder::class.java)
+                //startActivity(intent)
+                return true
+            }
+            R.id.favoris -> {
+                Toast.makeText(this, "fav", Toast.LENGTH_LONG).show()
+                var intent: Intent = Intent(this, FavActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+
+        }
+        return true
     }
+
+
     fun choixequipe(view: View) {
         var but2=findViewById(R.id.equipe2) as Button
         var but3=findViewById(R.id.equipe3) as Button
@@ -131,10 +152,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun fav(view: View){
-        val intentFav = Intent(this, FavActivity::class.java)
-        startActivity(intentFav)
-    }
 
     /*fun jouer(view: View){
         val radio: RadioButton = findViewById(R.id.radioButton2)

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1A264A"
+    android:background="#7419E6"
     tools:context=".BuzzerActivity">
 
     <View
@@ -12,7 +12,7 @@
         android:layout_width="499dp"
         android:layout_height="807dp"
         android:background="@drawable/background_color"
-        android:backgroundTint="#9C27B0"
+        android:backgroundTint="#E6EDD6FD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

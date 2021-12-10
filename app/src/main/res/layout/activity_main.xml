@@ -5,35 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:background="#1A264A"
+    android:background="#7419E6"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/flFragment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
+        app:backgroundTint="#FDF7DE"
+        app:itemIconSize="36dp"
+        app:itemIconTint="@android:color/holo_red_dark"
+        app:itemTextColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu"/>
+        app:menu="@menu/bottom_nav_menu">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <View
         android:id="@+id/view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/background_color"
-        android:backgroundTint="#9C27B0"
+        android:backgroundTint="#E6EDD6FD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +43,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="70dp"
         android:text="Playlists:"
-        android:textColor="#FFFFFF"
+        android:textColor="#FDF7DE"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,22 +53,22 @@
         android:id="@+id/blindfest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="BlindFest"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textColor="#7419E6"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Nombre d'équipes :"
-        android:textColor="#FFFFFF"
+        android:textColor="#FDF7DE"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,10 +80,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:backgroundTint="#0430D1"
+        android:backgroundTint="#FDF7DE"
         android:onClick="choixequipe"
         android:text="2"
-        android:textColor="@android:color/white"
+        android:textColor="#7419E6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -95,10 +92,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:backgroundTint="#0430D1"
+        android:backgroundTint="#FDF7DE"
         android:onClick="choixequipe"
         android:text="3"
-        android:textColor="@android:color/white"
+        android:textColor="#7419E6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -107,12 +104,12 @@
         android:id="@+id/equipe4"
         android:layout_width="88dp"
         android:layout_height="49dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="5dp"
-        android:backgroundTint="#0430D1"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="#FDF7DE"
         android:onClick="choixequipe"
         android:text="4"
-        android:textColor="@android:color/white"
+        android:textColor="#7419E6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -123,7 +120,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:text="Mode de jeu:"
-        android:textColor="#FFFFFF"
+        android:textColor="#FDF7DE"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,10 +132,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:backgroundTint="#0430D1"
+        android:backgroundTint="#FDF7DE"
         android:onClick="choixOs"
         android:text="One Shot"
-        android:textColor="@android:color/white"
+        android:textColor="#7419E6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mode" />
 
@@ -148,10 +145,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="5dp"
-        android:backgroundTint="#0430D1"
+        android:backgroundTint="#FDF7DE"
         android:onClick="choixParty"
         android:text="Party"
-        android:textColor="@android:color/white"
+        android:textColor="#7419E6"
         app:layout_constraintStart_toEndOf="@+id/os"
         app:layout_constraintTop_toBottomOf="@+id/mode" />
 
@@ -162,7 +159,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:text="Nombre de manches:"
-        android:textColor="#FFFFFF"
+        android:textColor="#FDF7DE"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -174,10 +171,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:backgroundTint="#0430D1"
+        android:backgroundTint="#FDF7DE"
         android:onClick="choixmanche"
         android:text="5"
-        android:textColor="@android:color/white"
+        android:textColor="#7419E6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nbmanche" />
 
@@ -187,7 +184,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:backgroundTint="#0430D1"
+        android:backgroundTint="#FDF7DE"
         android:text="1"
         android:textColor="#FF0000"
         app:layout_constraintStart_toStartOf="parent"
@@ -198,10 +195,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:backgroundTint="#0430D1"
+        android:backgroundTint="#FDF7DE"
         android:onClick="choixmanche"
         android:text="10"
-        android:textColor="@android:color/white"
+        android:textColor="#7419E6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nbmanche" />
@@ -210,12 +207,12 @@
         android:id="@+id/manche30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="5dp"
-        android:backgroundTint="#0430D1"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="#FDF7DE"
         android:onClick="choixmanche"
         android:text="30"
-        android:textColor="@android:color/white"
+        android:textColor="#7419E6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nbmanche" />
 
@@ -223,26 +220,18 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
+        android:backgroundTint="#FDF7DE"
         android:onClick="jouer"
         android:text="Jouer"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@android:color/holo_red_light"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playlist" />
-
-    <Button
-        android:id="@+id/fav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="16dp"
-        android:onClick="fav"
-        android:text="Fav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/playlist"
@@ -253,6 +242,16 @@
         android:spinnerMode="dropdown"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="84dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/blindfestlogo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

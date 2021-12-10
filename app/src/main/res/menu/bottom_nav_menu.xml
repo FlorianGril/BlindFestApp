@@ -2,13 +2,13 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/regles"
+        android:icon="@drawable/ic_rules_foreground"
+        android:title="Règles" />
+    <item
         android:id="@+id/jeu"
         android:title="Jeu"
         android:icon="@drawable/ic_music_foreground"/>
-    <item
-        android:id="@+id/regles"
-        android:title="Règles"
-        android:icon="@drawable/ic_rules_foreground"/>
     <item
         android:id="@+id/favoris"
         android:title="Favoris"
