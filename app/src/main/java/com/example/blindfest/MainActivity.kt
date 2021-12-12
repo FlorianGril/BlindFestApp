@@ -50,35 +50,13 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        Toast.makeText(this, "ouiiii", Toast.LENGTH_LONG).show()
-
-        when (item.itemId) {
-
-            R.id.regles-> {
-                //var intent: Intent = Intent(this, QRCodeEncoder::class.java)
-                //startActivity(intent)
-                return true
-            }
-            R.id.favoris -> {
-                Toast.makeText(this, "fav", Toast.LENGTH_LONG).show()
-                var intent: Intent = Intent(this, FavActivity::class.java)
-                startActivity(intent)
-                return true
-            }
-
-        }
-        return true
-    }
-
-
     fun choixequipe(view: View) {
         var but2=findViewById(R.id.equipe2) as Button
         var but3=findViewById(R.id.equipe3) as Button
         var but4=findViewById(R.id.equipe4) as Button
-        but2.setTextColor(Color.WHITE)
-        but3.setTextColor(Color.WHITE)
-        but4.setTextColor(Color.WHITE)
+        but2.setTextColor(Color.rgb(98,0,238))
+        but3.setTextColor(Color.rgb(98,0,238))
+        but4.setTextColor(Color.rgb(98,0,238))
         var button = view as Button
         var choixequipe = button.getText().toString()
         nbequipe = choixequipe.toInt()
@@ -89,9 +67,9 @@ class MainActivity : AppCompatActivity() {
         var manche5=findViewById(R.id.manche5) as Button
         var manche10=findViewById(R.id.manche10) as Button
         var manche30=findViewById(R.id.manche30) as Button
-        manche5.setTextColor(Color.WHITE)
-        manche10.setTextColor(Color.WHITE)
-        manche30.setTextColor(Color.WHITE)
+        manche5.setTextColor(Color.rgb(98,0,238))
+        manche10.setTextColor(Color.rgb(98,0,238))
+        manche30.setTextColor(Color.rgb(98,0,238))
         var buttonManche = view as Button
         var choixmanche = buttonManche.getText().toString()
         nbmanche = choixmanche.toInt()
@@ -109,8 +87,8 @@ class MainActivity : AppCompatActivity() {
         manche30.setVisibility(View.GONE)
         var os =findViewById(R.id.os) as Button
         var party=findViewById(R.id.party) as Button
-        os.setTextColor(Color.WHITE)
-        party.setTextColor(Color.WHITE)
+        os.setTextColor(Color.rgb(98,0,238))
+        party.setTextColor(Color.rgb(98,0,238))
         var buttonMode = view as Button
         buttonMode.setTextColor(Color.RED)
         nbmanche=1
@@ -127,8 +105,8 @@ class MainActivity : AppCompatActivity() {
         manche30.setVisibility(View.VISIBLE)
         var os =findViewById(R.id.os) as Button
         var party=findViewById(R.id.party) as Button
-        os.setTextColor(Color.WHITE)
-        party.setTextColor(Color.WHITE)
+        os.setTextColor(Color.rgb(98,0,238))
+        party.setTextColor(Color.rgb(98,0,238))
         var buttonMode = view as Button
         buttonMode.setTextColor(Color.RED)
     }

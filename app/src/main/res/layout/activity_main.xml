@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/background_color"
-        android:backgroundTint="#E6EDD6FD"
+        android:backgroundTint="#CE9AF3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +83,7 @@
         android:backgroundTint="#FDF7DE"
         android:onClick="choixequipe"
         android:text="2"
-        android:textColor="#7419E6"
+        android:textColor="@color/purple_500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -95,7 +95,7 @@
         android:backgroundTint="#FDF7DE"
         android:onClick="choixequipe"
         android:text="3"
-        android:textColor="#7419E6"
+        android:textColor="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -104,12 +104,12 @@
         android:id="@+id/equipe4"
         android:layout_width="88dp"
         android:layout_height="49dp"
-        android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
         android:backgroundTint="#FDF7DE"
         android:onClick="choixequipe"
         android:text="4"
-        android:textColor="#7419E6"
+        android:textColor="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -135,7 +135,7 @@
         android:backgroundTint="#FDF7DE"
         android:onClick="choixOs"
         android:text="One Shot"
-        android:textColor="#7419E6"
+        android:textColor="@color/purple_500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mode" />
 
@@ -148,7 +148,7 @@
         android:backgroundTint="#FDF7DE"
         android:onClick="choixParty"
         android:text="Party"
-        android:textColor="#7419E6"
+        android:textColor="@color/purple_500"
         app:layout_constraintStart_toEndOf="@+id/os"
         app:layout_constraintTop_toBottomOf="@+id/mode" />
 
@@ -174,7 +174,7 @@
         android:backgroundTint="#FDF7DE"
         android:onClick="choixmanche"
         android:text="5"
-        android:textColor="#7419E6"
+        android:textColor="@color/purple_500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nbmanche" />
 
@@ -198,7 +198,7 @@
         android:backgroundTint="#FDF7DE"
         android:onClick="choixmanche"
         android:text="10"
-        android:textColor="#7419E6"
+        android:textColor="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nbmanche" />
@@ -207,12 +207,12 @@
         android:id="@+id/manche30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
         android:backgroundTint="#FDF7DE"
         android:onClick="choixmanche"
         android:text="30"
-        android:textColor="#7419E6"
+        android:textColor="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nbmanche" />
 
@@ -238,7 +238,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:background="#FDF7DE"
+        android:backgroundTint="#FDF7DE"
+        android:dropDownWidth="wrap_content"
         android:entries="@array/Playlist"
+        android:foregroundTint="#FDF7DE"
+        android:popupBackground="#FDF7DE"
         android:spinnerMode="dropdown"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />

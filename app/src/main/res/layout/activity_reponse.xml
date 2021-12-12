@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#7419E6"
-    tools:context=".BuzzerActivity">
+    >
 
     <View
         android:id="@+id/view"
@@ -242,7 +242,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="5dp"
-        android:onClick="addfavori"
+        android:onClick="addfav"
         android:text="Fav"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
         app:layout_constraintEnd_toEndOf="parent"

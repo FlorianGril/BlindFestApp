@@ -1,13 +1,19 @@
 package com.example.blindfest
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class FavActivity : AppCompatActivity(){
+    private val musicList = ArrayList<MusicModel>()
+    private lateinit var musicAdapter: MusicAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +35,33 @@ class FavActivity : AppCompatActivity(){
             }
             true
         }
+
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        musicAdapter = MusicAdapter(musicList)
+        val layoutManager = LinearLayoutManager(applicationContext)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.adapter = musicAdapter
+        prepareMusicData()
     }
 
     fun accueil(view: View){
         val intentAcc = Intent(this, MainActivity::class.java)
         startActivity(intentAcc)
+    }
+
+    private fun prepareMusicData() {
+        var music = MusicModel("Gangstas Paradise", "Coolio", "1995")
+        musicList.add(music)
+        music = MusicModel("Still Dre", "Dr. Dre", "2001")
+        musicList.add(music)
+        music = MusicModel("La Tribu de Dana", "Manau", "1998")
+        musicList.add(music)
+        music = MusicModel("Midnight City", "M83", "2011")
+        musicList.add(music)
+
+
+
+        musicAdapter.notifyDataSetChanged()
     }
 }

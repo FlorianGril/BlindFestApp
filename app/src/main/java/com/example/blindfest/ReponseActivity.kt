@@ -9,6 +9,7 @@ import android.content.SharedPreferences
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 
 class ReponseActivity : AppCompatActivity() {
     var nbmanche = 1
@@ -35,21 +36,12 @@ class ReponseActivity : AppCompatActivity() {
         rep.text = reponse
         var affmanche = findViewById(R.id.affmanche) as TextView
         affmanche.text = "Manche $manche/$nbmanche"
-        nbBuzzers()
-
-
-
+        nbBuzzersPoints()
     }
-    override fun onBackPressed() {
 
-    }
     
-    fun addfavori(){
-        val favoris = getSharedPreferences("Favoris", Context.MODE_PRIVATE)
-        val editor: SharedPreferences.Editor = favoris.edit()
-        editor.putString(reponse, reponse)
-    }
-    private fun nbBuzzers(){
+
+    private fun nbBuzzersPoints(){
         var buzjm = findViewById(R.id.buzjaunem) as Button
         var buzjp = findViewById(R.id.buzjaunep) as Button
         var buzjs = findViewById(R.id.scorejaune) as Button
@@ -87,11 +79,18 @@ class ReponseActivity : AppCompatActivity() {
         val intent = Intent(this, ResultatActivity::class.java).apply {
             putExtra("nb_manche", nbmanche)
             putExtra("manche", manche)
-            //putExtra("nb_equipe", nbequipe)
+
         }
         startActivity(intent)
 
     }
+    fun addfav(view: View){
+        val favoris = getSharedPreferences("Favoris", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = favoris.edit()
+        editor.putString(reponse, reponse)
+        Toast.makeText(this, "Ajouté aux favoris",Toast.LENGTH_LONG).show()
+    }
+
     fun accueil(view: View){
         val intentAcc = Intent(this, MainActivity::class.java)
         startActivity(intentAcc)
@@ -149,5 +148,9 @@ class ReponseActivity : AppCompatActivity() {
             var scorevert = findViewById(R.id.scorevert) as TextView
             scorevert.setText(ptvert.toString())
         }
+    }
+
+    override fun onBackPressed() {
+
     }
 }

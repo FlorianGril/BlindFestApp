@@ -106,16 +106,16 @@ class BuzzerActivity : AppCompatActivity() {
         var buttonDrawable = equipeBuz.background
         buttonDrawable = DrawableCompat.wrap(buttonDrawable!!)
         if (button.getId()== R.id.buzjaune) {
-            DrawableCompat.setTint(buttonDrawable, Color.YELLOW)
+            DrawableCompat.setTint(buttonDrawable, Color.rgb(255,235,59))
         }
         if (button.getId()== R.id.buzbleu) {
-            DrawableCompat.setTint(buttonDrawable, Color.BLUE)
+            DrawableCompat.setTint(buttonDrawable, Color.rgb(0,217,255))
         }
         if (button.getId()== R.id.buzrouge) {
-            DrawableCompat.setTint(buttonDrawable, Color.RED)
+            DrawableCompat.setTint(buttonDrawable, Color.rgb(255,0,0))
         }
         if (button.getId()== R.id.buzvert) {
-            DrawableCompat.setTint(buttonDrawable, Color.GREEN)
+            DrawableCompat.setTint(buttonDrawable, Color.rgb(133,244,4))
         }
         equipeBuz.background = buttonDrawable
     }
