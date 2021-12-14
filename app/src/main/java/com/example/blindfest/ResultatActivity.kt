@@ -8,17 +8,20 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.wear.activity.ConfirmationActivity
+import androidx.wear.activity.ConfirmationActivity.EXTRA_MESSAGE
 
 class ResultatActivity : AppCompatActivity() {
     var nbmanche = 1
     var manche = 1
     var nbequipe = 2
+    var playlist=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resultat)
         getSupportActionBar()?.hide()
         nbmanche = intent.getIntExtra("nb_manche", 1)
         manche = intent.getIntExtra("manche", 1)
+        playlist = intent.getStringExtra("playlist").toString()
         if (nbmanche == manche){
             var bouton = findViewById(R.id.accueil) as Button
             bouton.text = "Accueil"
@@ -80,6 +83,7 @@ class ResultatActivity : AppCompatActivity() {
             val intent = Intent(this, BuzzerActivity::class.java).apply {
                 putExtra("nb_manche", nbmanche)
                 putExtra("manche", manche)
+                putExtra("playlist", playlist)
                 //putExtra("nb_equipe", nbequipe)
             }
             startActivity(intent)

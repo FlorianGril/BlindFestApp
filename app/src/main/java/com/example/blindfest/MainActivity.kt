@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, BuzzerActivity::class.java).apply {
             //putExtra("nb_equipe", nbequipe)
             putExtra("nb_manche", nbmanche)
-            putExtra(EXTRA_MESSAGE, playlist)
+            putExtra("playlist", playlist)
         }
         startActivity(intent)
     }

@@ -59,8 +59,13 @@ class FavActivity : AppCompatActivity(){
         musicList.add(music)
         music = MusicModel("Midnight City", "M83", "2011")
         musicList.add(music)
-
-
+        val favoris = getSharedPreferences("Favoris", Context.MODE_PRIVATE)
+        var nb_favori = favoris.getInt("nb_fav", 2)
+        for (i in 1..nb_favori){
+            var musique = favoris.getString("musique" + i, "non")
+            music = MusicModel(musique, "oui", "1900")
+            musicList.add(music)
+        }
 
         musicAdapter.notifyDataSetChanged()
     }

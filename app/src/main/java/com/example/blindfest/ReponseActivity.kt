@@ -20,18 +20,20 @@ class ReponseActivity : AppCompatActivity() {
     var ptrouge = 0
     var ptvert = 0
     var reponse = ""
+    var playlist =""
 
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reponse)
         getSupportActionBar()?.hide()
-        reponse = intent.getStringExtra(EXTRA_MESSAGE).toString()
+        reponse = intent.getStringExtra("musique").toString()
         val sharedPreferences = getSharedPreferences("Teams", Context.MODE_PRIVATE)
         nbequipe = sharedPreferences.getInt("nb_equipe", 2)
         //nbequipe = intent.getIntExtra("nb_equipe", 2)
         nbmanche = intent.getIntExtra("nb_manche", 1)
         manche = intent.getIntExtra("manche", 1)
+        playlist = intent.getStringExtra("playlist").toString()
         var rep = findViewById(R.id.reponse) as TextView
         rep.text = reponse
         var affmanche = findViewById(R.id.affmanche) as TextView
@@ -79,15 +81,19 @@ class ReponseActivity : AppCompatActivity() {
         val intent = Intent(this, ResultatActivity::class.java).apply {
             putExtra("nb_manche", nbmanche)
             putExtra("manche", manche)
-
+            putExtra("playlist", playlist)
         }
         startActivity(intent)
 
     }
     fun addfav(view: View){
         val favoris = getSharedPreferences("Favoris", Context.MODE_PRIVATE)
+        var nb_fav = favoris.getInt("nb_fav", 0)
+        nb_fav +=1
         val editor: SharedPreferences.Editor = favoris.edit()
-        editor.putString(reponse, reponse)
+        editor.putInt("nb_fav", nb_fav)
+        editor.putString("musique" + nb_fav, reponse)
+        editor.apply()
         Toast.makeText(this, "Ajouté aux favoris",Toast.LENGTH_LONG).show()
     }
 

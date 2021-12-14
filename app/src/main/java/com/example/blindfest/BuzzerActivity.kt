@@ -6,14 +6,17 @@ import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.wear.activity.ConfirmationActivity.EXTRA_MESSAGE
+import com.google.gson.Gson
 import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 
 
 class BuzzerActivity : AppCompatActivity() {
@@ -39,7 +42,7 @@ class BuzzerActivity : AppCompatActivity() {
         nbequipe = sharedPreferences.getInt("nb_equipe", 2)
         nbmanche = intent.getIntExtra("nb_manche", 1)
         manche = intent.getIntExtra("manche", 1)
-        playlist = intent.getStringExtra(EXTRA_MESSAGE).toString()
+        playlist = intent.getStringExtra("playlist").toString()
         //Toast.makeText(this, playlist, Toast.LENGTH_LONG).show()
         var timerBuz = findViewById(R.id.timer2) as TextView
         var equipeBuz = findViewById(R.id.equipebuz) as TextView
@@ -47,17 +50,19 @@ class BuzzerActivity : AppCompatActivity() {
         equipeBuz.setVisibility(View.GONE)
         nbBuzzers()
 
-        /*val idPlay = searchMusic("Rap")
+
+        val idPlay = searchMusic(playlist)
         //val idPlay = "1996494362"
-        Log.d("PLAYLIST CODE", ""+ idPlay)
+        Log.d("PLAYLIST CODE", "" + idPlay)
 
         val musiques = searchTracks(idPlay)
-        //val musiques = arrayOf("https://cdns-preview-7.dzcdn.net/stream/c-795a4ca42a97994b436f12110652fab3-3.mp3", "aaa")
-        Log.d("Test Music", ""+ musiques[0])*/
 
-        //music.setDataSource(musiques[0])
-        music = MediaPlayer.create(applicationContext, R.raw.gangsta)
-        //music.prepare()
+        //val musiques = arrayOf("https://cdns-preview-7.dzcdn.net/stream/c-795a4ca42a97994b436f12110652fab3-3.mp3", "aaa")
+        Log.d("Test Music", "" + musiques[manche - 1])
+
+        music.setDataSource(musiques[manche - 1])
+        //music = MediaPlayer.create(applicationContext, R.raw.gangsta)
+        music.prepare()
         music.start()
         runTimer()
     }
@@ -68,8 +73,8 @@ class BuzzerActivity : AppCompatActivity() {
 
     fun reponse(){
         val intentFin = Intent(this, ReponseActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, musique)
-            //putExtra(EXTRA_MESSAGE, playlist)
+            putExtra("musique", musique)
+            putExtra("playlist", playlist)
             putExtra("manche", manche)
             //putExtra("nb_equipe", nbequipe)
             putExtra("nb_manche", nbmanche)
@@ -106,16 +111,16 @@ class BuzzerActivity : AppCompatActivity() {
         var buttonDrawable = equipeBuz.background
         buttonDrawable = DrawableCompat.wrap(buttonDrawable!!)
         if (button.getId()== R.id.buzjaune) {
-            DrawableCompat.setTint(buttonDrawable, Color.rgb(255,235,59))
+            DrawableCompat.setTint(buttonDrawable, Color.rgb(255, 235, 59))
         }
         if (button.getId()== R.id.buzbleu) {
-            DrawableCompat.setTint(buttonDrawable, Color.rgb(0,217,255))
+            DrawableCompat.setTint(buttonDrawable, Color.rgb(0, 217, 255))
         }
         if (button.getId()== R.id.buzrouge) {
-            DrawableCompat.setTint(buttonDrawable, Color.rgb(255,0,0))
+            DrawableCompat.setTint(buttonDrawable, Color.rgb(255, 0, 0))
         }
         if (button.getId()== R.id.buzvert) {
-            DrawableCompat.setTint(buttonDrawable, Color.rgb(133,244,4))
+            DrawableCompat.setTint(buttonDrawable, Color.rgb(133, 244, 4))
         }
         equipeBuz.background = buttonDrawable
     }
@@ -145,7 +150,7 @@ class BuzzerActivity : AppCompatActivity() {
                     seconds--
                 }
                 handler.postDelayed(this, 1000)
-                if (finTimer){
+                if (finTimer) {
                     handler.removeCallbacks(this)
                 }
                 if (seconds == 19) {
@@ -197,7 +202,7 @@ class BuzzerActivity : AppCompatActivity() {
         })
     }
 
-    /*private fun searchMusic(playlist: String) : String {
+    private fun searchMusic(playlist: String) : String {
         val client = OkHttpClient()
         val url = "https://api.deezer.com/search/playlist/?q=$playlist/"
         val request = Request.Builder().url(url).build()
@@ -244,7 +249,8 @@ class BuzzerActivity : AppCompatActivity() {
 
                 }
             })
-            Log.d("ID CHOISI", ""+ playlistId)
+            Log.d("ID CHOISI", "" + playlistId)
+        Thread.sleep(1_000)
         return playlistId
     }
 
@@ -256,7 +262,6 @@ class BuzzerActivity : AppCompatActivity() {
         val request = Request.Builder().url(url).build()
         var previews: Array<String> = Array(nbmanche) {"a"}
 
-        if(true) {
             client.newCall(request).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
                     if (!response.isSuccessful) throw IOException("Unexpected code $response")
@@ -290,10 +295,8 @@ class BuzzerActivity : AppCompatActivity() {
                     println("API execute failed")
                 }
             })
-            Log.d("preview 1 :", ""+ previews[0])
-            return previews
-        }else{
-            return Array(nbmanche) {"a"}
-        }
-    }*/
+        Log.d("preview 1 :", "" + previews[0])
+        Thread.sleep(1_000)
+        return previews
+    }
 }
