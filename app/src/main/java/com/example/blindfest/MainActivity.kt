@@ -21,6 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
     var nbequipe = 2
     var nbmanche = 1
+    var listrandom = arrayListOf<Int>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -126,6 +127,7 @@ class MainActivity : AppCompatActivity() {
             //putExtra("nb_equipe", nbequipe)
             putExtra("nb_manche", nbmanche)
             putExtra("playlist", playlist)
+            putIntegerArrayListExtra("listrand", listrandom)
         }
         startActivity(intent)
     }

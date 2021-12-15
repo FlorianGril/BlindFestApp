@@ -9,12 +9,15 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.wear.activity.ConfirmationActivity
 import androidx.wear.activity.ConfirmationActivity.EXTRA_MESSAGE
+import java.util.ArrayList
 
 class ResultatActivity : AppCompatActivity() {
     var nbmanche = 1
     var manche = 1
     var nbequipe = 2
     var playlist=""
+    var listrandom = ArrayList<Int>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resultat)
@@ -22,6 +25,7 @@ class ResultatActivity : AppCompatActivity() {
         nbmanche = intent.getIntExtra("nb_manche", 1)
         manche = intent.getIntExtra("manche", 1)
         playlist = intent.getStringExtra("playlist").toString()
+        listrandom= intent.getIntegerArrayListExtra("listrand") as ArrayList<Int>
         if (nbmanche == manche){
             var bouton = findViewById(R.id.accueil) as Button
             bouton.text = "Accueil"
@@ -84,6 +88,7 @@ class ResultatActivity : AppCompatActivity() {
                 putExtra("nb_manche", nbmanche)
                 putExtra("manche", manche)
                 putExtra("playlist", playlist)
+                putIntegerArrayListExtra("listrand", listrandom)
                 //putExtra("nb_equipe", nbequipe)
             }
             startActivity(intent)

@@ -6,4 +6,6 @@ public class Artist {
     public String link;
     public String tracklist;
     public String type;
+
+    public String getNameA() { return name; }
 }

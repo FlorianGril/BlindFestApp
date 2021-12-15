@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BlindFest">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,18 +22,23 @@
             </intent-filter>
         </activity>
         <activity android:name=".BuzzerActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity">
         </activity>
         <activity android:name=".ReponseActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".BuzzerActivity">
         </activity>
         <activity android:name=".ResultatActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".ReponseActivity">
         </activity>
         <activity android:name=".FavActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity">
         </activity>
         <activity android:name=".ReglesActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity">
         </activity>
     </application>

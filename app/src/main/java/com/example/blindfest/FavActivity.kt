@@ -45,10 +45,6 @@ class FavActivity : AppCompatActivity(){
         prepareMusicData()
     }
 
-    fun accueil(view: View){
-        val intentAcc = Intent(this, MainActivity::class.java)
-        startActivity(intentAcc)
-    }
 
     private fun prepareMusicData() {
         var music = MusicModel("Gangstas Paradise", "Coolio", "1995")

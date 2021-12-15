@@ -1,15 +1,15 @@
 package com.example.blindfest
 
 import android.content.Context
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.wear.activity.ConfirmationActivity.EXTRA_MESSAGE
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import java.util.ArrayList
 
 class ReponseActivity : AppCompatActivity() {
     var nbmanche = 1
@@ -21,6 +21,7 @@ class ReponseActivity : AppCompatActivity() {
     var ptvert = 0
     var reponse = ""
     var playlist =""
+    var listrandom = ArrayList<Int>()
 
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +35,8 @@ class ReponseActivity : AppCompatActivity() {
         nbmanche = intent.getIntExtra("nb_manche", 1)
         manche = intent.getIntExtra("manche", 1)
         playlist = intent.getStringExtra("playlist").toString()
+        listrandom= intent.getIntegerArrayListExtra("listrand") as ArrayList<Int>
+
         var rep = findViewById(R.id.reponse) as TextView
         rep.text = reponse
         var affmanche = findViewById(R.id.affmanche) as TextView
@@ -73,7 +76,7 @@ class ReponseActivity : AppCompatActivity() {
         var scorejaune = sharedPreferences.getInt("scorejaune", 0) + ptjaune
         var scortvert = sharedPreferences.getInt("scorevert", 0) + ptvert
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
-        editor.putInt("scorerouge",scorerouge)
+        editor.putInt("scorerouge", scorerouge)
         editor.putInt("scorebleu", scorebleu)
         editor.putInt("scorejaune", scorejaune)
         editor.putInt("scorevert", scortvert)
@@ -82,6 +85,7 @@ class ReponseActivity : AppCompatActivity() {
             putExtra("nb_manche", nbmanche)
             putExtra("manche", manche)
             putExtra("playlist", playlist)
+            putIntegerArrayListExtra("listrand", listrandom)
         }
         startActivity(intent)
 
@@ -94,7 +98,7 @@ class ReponseActivity : AppCompatActivity() {
         editor.putInt("nb_fav", nb_fav)
         editor.putString("musique" + nb_fav, reponse)
         editor.apply()
-        Toast.makeText(this, "Ajouté aux favoris",Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Ajouté aux favoris", Toast.LENGTH_LONG).show()
     }
 
     fun accueil(view: View){

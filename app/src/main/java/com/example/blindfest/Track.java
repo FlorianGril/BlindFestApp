@@ -23,6 +23,8 @@ public class Track {
         return title;
     }
 
+    public Artist getArtist() { return artist; }
+
     public String getPreview() {
         return preview;
     }

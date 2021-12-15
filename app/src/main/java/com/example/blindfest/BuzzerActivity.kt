@@ -12,11 +12,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
-import androidx.wear.activity.ConfirmationActivity.EXTRA_MESSAGE
 import com.google.gson.Gson
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
+import java.util.*
 
 
 class BuzzerActivity : AppCompatActivity() {
@@ -27,8 +27,9 @@ class BuzzerActivity : AppCompatActivity() {
     var nbmanche = 1
     var manche = 1
     var playlist = ""
-    var musique = "Coolio - Gangsta's Paradise (ft. LV)"
+    var titres = ""
     var finTimer = false
+    var listrandom= ArrayList<Int>()
     lateinit var tracks : List<Track>
 
     private var music: MediaPlayer = MediaPlayer()
@@ -43,6 +44,7 @@ class BuzzerActivity : AppCompatActivity() {
         nbmanche = intent.getIntExtra("nb_manche", 1)
         manche = intent.getIntExtra("manche", 1)
         playlist = intent.getStringExtra("playlist").toString()
+        listrandom= intent.getIntegerArrayListExtra("listrand") as ArrayList<Int>
         //Toast.makeText(this, playlist, Toast.LENGTH_LONG).show()
         var timerBuz = findViewById(R.id.timer2) as TextView
         var equipeBuz = findViewById(R.id.equipebuz) as TextView
@@ -50,17 +52,35 @@ class BuzzerActivity : AppCompatActivity() {
         equipeBuz.setVisibility(View.GONE)
         nbBuzzers()
 
+        val random = Random()
 
-        val idPlay = searchMusic(playlist)
+        fun rand(from: Int, to: Int) : Int {
+            return random.nextInt(to - from) + from
+        }
+
+
+
+        var idPlay = searchMusic(playlist)
+        val liste: List<String> = idPlay.split("-")
+
+        idPlay = liste[0]
+        var nbPlay = liste[1]
+
         //val idPlay = "1996494362"
         Log.d("PLAYLIST CODE", "" + idPlay)
 
-        val musiques = searchTracks(idPlay)
+        val musiques = searchTracks(idPlay, nbPlay)
+
+
+        val randnb = listRand(rand(0, musiques.size), listrandom, musiques.size)
+
+        listrandom.add(randnb)
+        titres = searchArtistes(idPlay, nbPlay)[randnb]
 
         //val musiques = arrayOf("https://cdns-preview-7.dzcdn.net/stream/c-795a4ca42a97994b436f12110652fab3-3.mp3", "aaa")
-        Log.d("Test Music", "" + musiques[manche - 1])
+        Log.d("Test Music", "" + musiques[randnb])
 
-        music.setDataSource(musiques[manche - 1])
+        music.setDataSource(musiques[randnb])
         //music = MediaPlayer.create(applicationContext, R.raw.gangsta)
         music.prepare()
         music.start()
@@ -71,16 +91,34 @@ class BuzzerActivity : AppCompatActivity() {
 
     }
 
+    fun listRand(randnb: Int, listrand: ArrayList<Int>, len: Int): Int {
+        if (randnb in listrand)
+        {
+            return listRand(rand(0, len), listrand, len)
+        }
+        else
+        {
+            return randnb
+        }
+    }
+
+    fun rand(from: Int, to: Int) : Int {
+        val random = Random()
+        return random.nextInt(to - from) + from
+    }
+
     fun reponse(){
         val intentFin = Intent(this, ReponseActivity::class.java).apply {
-            putExtra("musique", musique)
+            putExtra("musique", titres)
             putExtra("playlist", playlist)
             putExtra("manche", manche)
             //putExtra("nb_equipe", nbequipe)
             putExtra("nb_manche", nbmanche)
+            putIntegerArrayListExtra("listrand", listrandom)
         }
         startActivity(intentFin)
     }
+
     fun onClickFin(view: View) {
         music.stop()
         music.reset()
@@ -207,6 +245,7 @@ class BuzzerActivity : AppCompatActivity() {
         val url = "https://api.deezer.com/search/playlist/?q=$playlist/"
         val request = Request.Builder().url(url).build()
         var playlistId : String = "marc"
+        var playlistNb : Int = 0
 
             client.newCall(request).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
@@ -240,6 +279,7 @@ class BuzzerActivity : AppCompatActivity() {
                     var playlistChoisi = playlists[numPlay]
 
                     playlistId = playlistChoisi.getId()
+                    playlistNb = playlistChoisi.getNb_tracks()
                     Log.d("111-ID CHOISI-111", "" + playlistId)
 
                 }
@@ -251,16 +291,16 @@ class BuzzerActivity : AppCompatActivity() {
             })
             Log.d("ID CHOISI", "" + playlistId)
         Thread.sleep(1_000)
-        return playlistId
+        return "$playlistId-$playlistNb"
     }
 
-    private fun searchTracks(playlist: String): Array<String> {
+    private fun searchTracks(playlist: String, nb : String): Array<String> {
         val client = OkHttpClient()
         val url = "https://api.deezer.com/playlist/$playlist/"
 
         Log.d("AA", "URL ::$url")
         val request = Request.Builder().url(url).build()
-        var previews: Array<String> = Array(nbmanche) {"a"}
+        var previews: Array<String> = Array(nb.toInt()) {"a"}
 
             client.newCall(request).enqueue(object : Callback {
                 override fun onResponse(call: Call, response: Response) {
@@ -282,7 +322,7 @@ class BuzzerActivity : AppCompatActivity() {
 
                     if (tracks.size > 0) {
                         Log.d("KIKI", "" + tracks[0].getTitle())
-                        for (i in 0..nbmanche - 1) {
+                        for (i in 0..tracks.size-1) {
                             previews[i] = tracks[i].getPreview()
                         }
                     }
@@ -298,5 +338,50 @@ class BuzzerActivity : AppCompatActivity() {
         Log.d("preview 1 :", "" + previews[0])
         Thread.sleep(1_000)
         return previews
+    }
+
+    private fun searchArtistes(playlist: String, nb: String): Array<String> {
+        val client = OkHttpClient()
+        val url = "https://api.deezer.com/playlist/$playlist/"
+
+        Log.d("AA", "URL ::$url")
+        val request = Request.Builder().url(url).build()
+        var artistes: Array<String> = Array(nb.toInt()) {"a"}
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+                val rep = response.body()!!.string()
+
+                val json = JSONObject(rep)
+
+                Log.d("AA", "JSON ::${json.toString()}")
+
+                val gson = Gson()
+                var play = gson.fromJson(json.toString(), Playlist::class.java)
+
+                var tracks: List<Track>
+                var pre = play.getTracks()
+                Log.d("pre", "" + pre.getData())
+                tracks = pre.getData()
+
+                if (tracks.size > 0) {
+                    Log.d("KIKI", "" + tracks[0].getArtist().nameA)
+                    for (i in 0..tracks.size-1) {
+                        artistes[i] = tracks[i].getArtist().nameA + " - " + tracks[i].getTitle()
+                    }
+                }
+
+                Log.d("Musique 1 artiste", "" + artistes[0])
+
+            }
+
+            override fun onFailure(call: Call, e: IOException) {
+                println("API execute failed")
+            }
+        })
+        Thread.sleep(2_000)
+        return artistes
     }
 }
