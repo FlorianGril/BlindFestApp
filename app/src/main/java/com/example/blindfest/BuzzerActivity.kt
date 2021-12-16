@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.DrawableCompat
 import com.google.gson.Gson
@@ -31,6 +32,11 @@ class BuzzerActivity : AppCompatActivity() {
     var finTimer = false
     var listrandom= ArrayList<Int>()
     lateinit var tracks : List<Track>
+    var idPlay = ""
+    var nbPlay = ""
+    var randnb = 0
+    var buz = false
+
 
     private var music: MediaPlayer = MediaPlayer()
 
@@ -60,31 +66,44 @@ class BuzzerActivity : AppCompatActivity() {
 
 
 
-        var idPlay = searchMusic(playlist)
+        idPlay = searchMusic(playlist)
         val liste: List<String> = idPlay.split("-")
 
         idPlay = liste[0]
-        var nbPlay = liste[1]
+        nbPlay = liste[1]
 
         //val idPlay = "1996494362"
         Log.d("PLAYLIST CODE", "" + idPlay)
 
+
+        runTimer()
+    }
+
+    override fun onStart() {
+        super.onStart()
         val musiques = searchTracks(idPlay, nbPlay)
 
-
-        val randnb = listRand(rand(0, musiques.size), listrandom, musiques.size)
-
-        listrandom.add(randnb)
+        randnb = listRand(rand(0, musiques.size), listrandom, musiques.size)
         titres = searchArtistes(idPlay, nbPlay)[randnb]
+        listrandom.add(randnb)
+
 
         //val musiques = arrayOf("https://cdns-preview-7.dzcdn.net/stream/c-795a4ca42a97994b436f12110652fab3-3.mp3", "aaa")
         Log.d("Test Music", "" + musiques[randnb])
 
-        music.setDataSource(musiques[randnb])
-        //music = MediaPlayer.create(applicationContext, R.raw.gangsta)
-        music.prepare()
-        music.start()
-        runTimer()
+        try{
+            music.reset()
+            music.setDataSource(musiques[randnb])
+            //music = MediaPlayer.create(applicationContext, R.raw.gangsta)
+            music.prepare()
+            music.start()
+        }
+        catch(e: IOException){
+            Log.d("wa", "" + e)
+        }
+
+
+
     }
 
     override fun onBackPressed() {
@@ -127,40 +146,49 @@ class BuzzerActivity : AppCompatActivity() {
     }
 
     fun onClickStop(view: View?) {
-        var buz1 = findViewById(R.id.buzjaune) as Button
-        var buz2 = findViewById(R.id.buzbleu) as Button
-        var buz3 = findViewById(R.id.buzrouge) as Button
-        var buz4 = findViewById(R.id.buzvert) as Button
-        var fin = findViewById(R.id.timerFin) as TextView
-        buz1.setVisibility(View.GONE)
-        buz2.setVisibility(View.GONE)
-        buz3.setVisibility(View.GONE)
-        buz4.setVisibility(View.GONE)
-        fin.setVisibility(View.GONE)
-        running = false
-        music.pause()
-        runTimer2()
-        var button = view as Button
-        var timerBuz = findViewById(R.id.timer2) as TextView
-        timerBuz.setVisibility(View.VISIBLE)
-        var equipeBuz = findViewById(R.id.equipebuz) as TextView
-        equipeBuz.setVisibility(View.VISIBLE)
+        if (buz == false)
+        {
+            buz = true
+            var buz1 = findViewById(R.id.buzjaune) as Button
+            var buz2 = findViewById(R.id.buzbleu) as Button
+            var buz3 = findViewById(R.id.buzrouge) as Button
+            var buz4 = findViewById(R.id.buzvert) as Button
+            var fin = findViewById(R.id.timerFin) as TextView
+            buz1.setVisibility(View.GONE)
+            buz2.setVisibility(View.GONE)
+            buz3.setVisibility(View.GONE)
+            buz4.setVisibility(View.GONE)
+            fin.setVisibility(View.GONE)
+            running = false
+            music.pause()
+            runTimer2()
+            var button = view as Button
+            var timerBuz = findViewById(R.id.timer2) as TextView
+            timerBuz.setVisibility(View.VISIBLE)
+            var equipeBuz = findViewById(R.id.equipebuz) as TextView
+            equipeBuz.setVisibility(View.VISIBLE)
 
-        var buttonDrawable = equipeBuz.background
-        buttonDrawable = DrawableCompat.wrap(buttonDrawable!!)
-        if (button.getId()== R.id.buzjaune) {
-            DrawableCompat.setTint(buttonDrawable, Color.rgb(255, 235, 59))
+            var buttonDrawable = equipeBuz.background
+            buttonDrawable = DrawableCompat.wrap(buttonDrawable!!)
+            if (button.getId()== R.id.buzjaune) {
+                DrawableCompat.setTint(buttonDrawable, Color.rgb(255, 235, 59))
+            }
+            if (button.getId()== R.id.buzbleu) {
+                DrawableCompat.setTint(buttonDrawable, Color.rgb(0, 217, 255))
+            }
+            if (button.getId()== R.id.buzrouge) {
+                DrawableCompat.setTint(buttonDrawable, Color.rgb(255, 0, 0))
+            }
+            if (button.getId()== R.id.buzvert) {
+                DrawableCompat.setTint(buttonDrawable, Color.rgb(133, 244, 4))
+            }
+            equipeBuz.background = buttonDrawable
         }
-        if (button.getId()== R.id.buzbleu) {
-            DrawableCompat.setTint(buttonDrawable, Color.rgb(0, 217, 255))
+        if (buz == true)
+        {
+
         }
-        if (button.getId()== R.id.buzrouge) {
-            DrawableCompat.setTint(buttonDrawable, Color.rgb(255, 0, 0))
-        }
-        if (button.getId()== R.id.buzvert) {
-            DrawableCompat.setTint(buttonDrawable, Color.rgb(133, 244, 4))
-        }
-        equipeBuz.background = buttonDrawable
+
     }
 
     private fun nbBuzzers(){
@@ -232,6 +260,7 @@ class BuzzerActivity : AppCompatActivity() {
                     seconds2 = 5
                     music.start()
                     running = true
+                    buz = false
                     fin.setVisibility(View.VISIBLE)
                     nbBuzzers()
                 }
@@ -241,6 +270,7 @@ class BuzzerActivity : AppCompatActivity() {
     }
 
     private fun searchMusic(playlist: String) : String {
+        Toast.makeText(this, "La musique est sur le point de commencer...", Toast.LENGTH_LONG).show()
         val client = OkHttpClient()
         val url = "https://api.deezer.com/search/playlist/?q=$playlist/"
         val request = Request.Builder().url(url).build()
@@ -290,7 +320,7 @@ class BuzzerActivity : AppCompatActivity() {
                 }
             })
             Log.d("ID CHOISI", "" + playlistId)
-        Thread.sleep(1_000)
+        Thread.sleep(1300)
         return "$playlistId-$playlistNb"
     }
 
@@ -336,11 +366,12 @@ class BuzzerActivity : AppCompatActivity() {
                 }
             })
         Log.d("preview 1 :", "" + previews[0])
-        Thread.sleep(1_000)
+        Thread.sleep(800)
         return previews
     }
 
     private fun searchArtistes(playlist: String, nb: String): Array<String> {
+
         val client = OkHttpClient()
         val url = "https://api.deezer.com/playlist/$playlist/"
 
@@ -381,7 +412,7 @@ class BuzzerActivity : AppCompatActivity() {
                 println("API execute failed")
             }
         })
-        Thread.sleep(2_000)
+        Thread.sleep(2000)
         return artistes
     }
 }

@@ -7,18 +7,21 @@
     -->
     <string name="hello_world">Hello Square World!</string>
     <string-array name="Playlist">
-        <item>Éclectique</item>
-        <item>Rap FR</item>
-        <item>Rap US</item>
+        <item>Best Rap Fr 2018-2021</item>
+        <item>Classique du rap français</item>
+        <item>Best Rap US</item>
         <item>Rock</item>
-        <item>Années 2000</item>
-        <item>Dubstep</item>
-        <item>Soirée</item>
+        <item>2000 hits</item>
+        <item>90s Rap</item>
+        <item>best 80s</item>
         <item>Hits du moment</item>
+        <item>Best Electro</item>
+        <item>Best Alternative</item>
         <item>Best of Anime Opening</item>
-        <item>Electro</item>
         <item>Film</item>
         <item>Série</item>
+
+
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

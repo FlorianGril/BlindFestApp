@@ -47,20 +47,17 @@ class FavActivity : AppCompatActivity(){
 
 
     private fun prepareMusicData() {
-        var music = MusicModel("Gangstas Paradise", "Coolio", "1995")
-        musicList.add(music)
-        music = MusicModel("Still Dre", "Dr. Dre", "2001")
-        musicList.add(music)
-        music = MusicModel("La Tribu de Dana", "Manau", "1998")
-        musicList.add(music)
-        music = MusicModel("Midnight City", "M83", "2011")
+        var music = MusicModel("Coolio - Gangstas Paradise")
         musicList.add(music)
         val favoris = getSharedPreferences("Favoris", Context.MODE_PRIVATE)
         var nb_favori = favoris.getInt("nb_fav", 2)
         for (i in 1..nb_favori){
             var musique = favoris.getString("musique" + i, "non")
-            music = MusicModel(musique, "oui", "1900")
-            musicList.add(music)
+            if (musique != "non")
+            {
+                music = MusicModel(musique)
+                musicList.add(music)
+            }
         }
 
         musicAdapter.notifyDataSetChanged()

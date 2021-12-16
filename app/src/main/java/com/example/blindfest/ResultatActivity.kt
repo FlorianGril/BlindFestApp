@@ -1,6 +1,8 @@
 package com.example.blindfest
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
@@ -37,6 +39,8 @@ class ResultatActivity : AppCompatActivity() {
     override fun onBackPressed() {
 
     }
+
+
     fun classement(){
         val sharedPreferences = getSharedPreferences("Teams", Context.MODE_PRIVATE)
         nbequipe = sharedPreferences.getInt("nb_equipe", 2)
@@ -78,6 +82,27 @@ class ResultatActivity : AppCompatActivity() {
     }
 
     fun accueil(view: View){
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        dialogBuilder.setMessage("Voulez-vous vraiment retourner au menu principal?")
+
+                .setCancelable(false)
+
+                .setPositiveButton("Oui", DialogInterface.OnClickListener {
+                    dialog, id -> val intentAcc = Intent(this, MainActivity::class.java)
+                    startActivity(intentAcc)
+                })
+
+                .setNegativeButton("Non", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+                })
+
+        val alert = dialogBuilder.create()
+
+        alert.show()
+    }
+
+    fun suite(view: View){
         if (nbmanche == manche){
             val intentAcc = Intent(this, MainActivity::class.java)
             startActivity(intentAcc)

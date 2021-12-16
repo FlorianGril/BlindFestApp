@@ -12,27 +12,35 @@
         android:padding="8dp">
 
         <Button
-            android:id="@+id/supprimer"
+            android:id="@+id/suppr"
             android:layout_width="43dp"
             android:layout_height="36dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
+            android:layout_marginBottom="3dp"
+            android:layout_marginEnd="11dp"
             android:background="@android:drawable/ic_delete"
             android:foreground="@android:drawable/ic_delete"
             app:iconTintMode="add" />
 
+        <Button
+            android:id="@+id/yt"
+            android:layout_width="43dp"
+            android:layout_height="36dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="3dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@+id/suppr"
+            android:background="@android:drawable/ic_menu_search"
+            android:foreground="@android:drawable/ic_menu_search"
+            app:iconTintMode="add" />
+
         <TextView
-            android:id="@+id/yearFav"
+            android:id="@+id/supprimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:textColor="#7419E6" />
-
-        <TextView
-            android:id="@+id/artistFav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:text="supprimer ?"
             android:textColor="#7419E6" />
 
         <TextView
@@ -40,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@+id/yearFav"
+            android:layout_toStartOf="@+id/supprimer"
             android:textColor="#7419E6"
             android:textSize="16sp"
             android:textStyle="bold" />

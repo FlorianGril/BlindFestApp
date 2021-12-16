@@ -1,6 +1,8 @@
 package com.example.blindfest
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -102,9 +104,27 @@ class ReponseActivity : AppCompatActivity() {
     }
 
     fun accueil(view: View){
-        val intentAcc = Intent(this, MainActivity::class.java)
-        startActivity(intentAcc)
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        dialogBuilder.setMessage("Voulez-vous vraiment retourner au menu principal?")
+
+                .setCancelable(false)
+
+                .setPositiveButton("Oui", DialogInterface.OnClickListener {
+                    dialog, id -> val intentAcc = Intent(this, MainActivity::class.java)
+                    startActivity(intentAcc)
+                })
+
+                .setNegativeButton("Non", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+                })
+
+        val alert = dialogBuilder.create()
+
+        alert.show()
     }
+
+
 
     fun moins(view: View){
         if (view.getId()== R.id.buzjaunem)
